@@ -5,7 +5,7 @@ using GtMotive.Estimate.Microservice.Api.Vehicles.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GtMotive.Estimate.Microservice.Api
+namespace GtMotive.Estimate.Microservice.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +25,7 @@ namespace GtMotive.Estimate.Microservice.Api
             return presenter.ActionResult;
         }
 
-        [HttpGet]
+        [HttpGet("availables")]
         public async Task<IActionResult> GetAvailableVehicles()
         {
             var presenter = await _mediator.Send(new GetVehiclesFleetRequest());

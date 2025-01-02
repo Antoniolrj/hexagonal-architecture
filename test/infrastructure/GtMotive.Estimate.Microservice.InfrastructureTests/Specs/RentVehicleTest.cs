@@ -25,7 +25,7 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Specs
             // Arrange
             var request = new
             {
-                VehicleId = Guid.NewGuid(),
+                VehicleId = "1234",
                 CustomerId = Guid.NewGuid(),
             };
 

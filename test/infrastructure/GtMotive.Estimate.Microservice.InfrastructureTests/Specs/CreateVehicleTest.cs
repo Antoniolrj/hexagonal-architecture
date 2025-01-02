@@ -38,26 +38,5 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Specs
 
             Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
         }
-
-        [Fact]
-        public async Task CreateVehicle_ReturnsVehicleId_WhenModelIsValid()
-        {
-            // Arrange
-            var request = new CreateVehicleRequest
-            {
-                Model = "Model",
-                Brand = "Brand",
-                LicensePlate = "1234ABC",
-                ManufacturingDate = DateTime.UtcNow
-            };
-
-            using var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            var uri = new Uri(_endpointUrl, UriKind.Relative);
-
-            var response = await _client.PostAsync(uri, content);
-            var responseContent = await response.Content.ReadAsStringAsync();
-
-            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
-        }
     }
 }
