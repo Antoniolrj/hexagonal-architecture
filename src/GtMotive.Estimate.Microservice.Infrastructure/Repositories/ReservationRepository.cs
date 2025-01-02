@@ -1,5 +1,6 @@
 using GtMotive.Estimate.Microservice.Domain.Aggregates;
 using GtMotive.Estimate.Microservice.Domain.Repositories;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,9 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
     {
         private readonly IMongoCollection<Reservation> _reservations;
 
-        public ReservationRepository(IMongoDatabase database)
+        public ReservationRepository(MongoService mongoService)
         {
-            if (database == null) throw new ArgumentNullException(nameof(database));
-
-            _reservations = database.GetCollection<Reservation>("Reservations");
+            _reservations = mongoService.GetCollection<Reservation>("Reservations");
         }
 
         public async Task Add(Reservation reservation)

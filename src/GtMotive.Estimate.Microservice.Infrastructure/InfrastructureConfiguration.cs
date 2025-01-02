@@ -11,7 +11,6 @@ using GtMotive.Estimate.Microservice.Infrastructure.Repositories;
 using GtMotive.Estimate.Microservice.Infrastructure.Telemetry;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 [assembly: CLSCompliant(false)]
 
@@ -39,15 +38,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
             var mongoSetting = configuration.GetSection("MongoDb");
             services.Configure<MongoDbSettings>(options => mongoSetting.Bind(options));
 
-            services.AddSingleton<MongoService>();
-            services.AddSingleton(provider =>
-            {
-                var mongoService = provider.GetRequiredService<MongoService>();
-                var settings = provider.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-                return mongoService.GetDatabase();
-            });
-
-            services.AddScoped<IUnitOfWork, MongoUnitOfWork>();
+            services.AddScoped<MongoService>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
 
