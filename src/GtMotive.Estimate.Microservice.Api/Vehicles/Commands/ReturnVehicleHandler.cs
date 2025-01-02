@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.UseCases;
@@ -23,7 +24,7 @@ namespace GtMotive.Estimate.Microservice.Api.Vehicles.Commands
         {
             var input = new ReturnVehicleInput
             {
-                ReservationId = request.ReservationId
+                ReservationId = Guid.Parse(request.ReservationId)
             };
 
             _useCase.SetOutputPort(_presenter);
