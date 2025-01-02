@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    platform: linux/amd64
+    image: gtmotive.estimate.microservice:latest
+    build:
+      context: .
+      dockerfile: src/GtMotive.Estimate.Microservice.Host/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDb__ConnectionString=mongodb://mongo:27017
+      - MongoDb__MongoDbDatabaseName=GtMotiveEstimate
+      - ASPNETCORE_hostBuilder__reloadConfigOnChange=false
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "program": "${workspaceFolder}/src/GtMotive.Estimate.Microservice.Host/bin/Debug/net6.0/GtMotive.Estimate.Microservice.Host.dll",
+      "cwd": "${workspaceFolder}/src/GtMotive.Estimate.Microservice.Host"
+    },
+    {
+      "name": ".NET Core Launch Tests",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/test/functional/GtMotive.Estimate.Microservice.FunctionalTests/bin/Debug/net6.0/GtMotive.Estimate.Microservice.FunctionalTests.dll",  // Ruta al proyecto de pruebas
+      "args": [],
+      "cwd": "${workspaceFolder}/test/functional/GtMotive.Estimate.Microservice.FunctionalTests",  // Ruta al proyecto de pruebas
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\b(http|https)://\\S+\\b",
+        "uriFormat": "%s"
+      }
+    }
+  ]
+}
