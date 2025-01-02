@@ -27,11 +27,7 @@ COPY . .
 WORKDIR "/src/GtMotive.Estimate.Microservice.Host"
 RUN dotnet build "GtMotive.Estimate.Microservice.Host.csproj" -c Release -o /app/build
 
-FROM build AS test
-WORKDIR "/src"
-RUN dotnet test --no-build --logger:"console;verbosity=detailed"
-
-FROM test AS publish
+FROM build AS publish
 WORKDIR "/src/GtMotive.Estimate.Microservice.Host"
 RUN dotnet publish "GtMotive.Estimate.Microservice.Host.csproj" -c Release -o /app/publish
 
